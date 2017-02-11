@@ -45,91 +45,56 @@ class MagentoSchema extends AbstractSchema
 
     private $logger;
 
-    /*
-        public function __construct(
-							AbstractField $addCategoryField,
-							AbstractField $addProductAttributeField,
-							AbstractField $addProductField,
-							AbstractField $categoriesField,
-							AbstractField $categoryAttributeField,
-							AbstractField $categoryAttributesField,
-							AbstractField $categoryField,
-							AbstractField $deleteCategoryField,
-							AbstractField $deleteProductAttributeField,
-							AbstractField $deleteProductField,
-							AbstractField $modulesField,
-							AbstractField $moveCategoryField,
-							AbstractField $productAttributeField,
-							AbstractField $productAttributesField,
-							AbstractField $productField,
-							AbstractField $productsField,
-							AbstractField $updateCategoryField,
-							AbstractField $updateProductField
-        )
-        {
-            // Category
-            $this->addCategoryField = $addCategoryField;
-            $this->categoriesField = $categoriesField;
-            $this->categoryField = $categoryField;
-            $this->deleteCategoryField = $deleteCategoryField;
-            $this->moveCategoryField = $moveCategoryField;
-            $this->updateCategoryField = $updateCategoryField;
-        //
-        //        // Category Attribute
-            $this->categoryAttributeField = $categoryAttributeField;
-            $this->categoryAttributesField = $categoryAttributesField;
-        //
-        //        // Modules
-            $this->modulesField = $modulesField;
-
-            // Product Attribute
-            $this->addProductAttributeField = $addProductAttributeField;
-            $this->deleteProductAttributeField = $deleteProductAttributeField;
-            $this->productAttributeField = $productAttributeField;
-            $this->productAttributesField = $productAttributesField;
-
-            // Product
-            $this->addProductField = $addProductField;
-            $this->deleteProductField = $deleteProductField;
-            $this->productField = $productField;
-            $this->productsField = $productsField;
-            $this->updateProductField = $updateProductField;
-
-            parent::__construct([]);
-        }
-	*/
-
-    public function __construct(array $config = [])
+    public function __construct(
+                        AbstractField $addCategoryField,
+                        AbstractField $addProductAttributeField,
+                        AbstractField $addProductField,
+                        AbstractField $categoriesField,
+                        AbstractField $categoryAttributeField,
+                        AbstractField $categoryAttributesField,
+                        AbstractField $categoryField,
+                        AbstractField $deleteCategoryField,
+                        AbstractField $deleteProductAttributeField,
+                        AbstractField $deleteProductField,
+                        AbstractField $modulesField,
+                        AbstractField $moveCategoryField,
+                        AbstractField $productAttributeField,
+                        AbstractField $productAttributesField,
+                        AbstractField $productField,
+                        AbstractField $productsField,
+                        AbstractField $updateCategoryField,
+                        AbstractField $updateProductField
+    )
     {
         // Category
-        $this->addCategoryField = 'addCategoryField';
-        $this->categoriesField = 'categoriesField';
-        $this->categoryField = 'categoryField';
-        $this->deleteCategoryField = 'deleteCategoryField';
-        $this->moveCategoryField = 'moveCategoryField';
-        $this->updateCategoryField = 'updateCategoryField';
-        //
-        //        // Category Attribute
-        $this->categoryAttributeField = 'categoryAttributeField';
-        $this->categoryAttributesField = 'categoryAttributesField';
-        //
-        //        // Modules
-        $this->modulesField = 'modulesField';
+        $this->addCategoryField = $addCategoryField;
+        $this->categoriesField = $categoriesField;
+        $this->categoryField = $categoryField;
+        $this->deleteCategoryField = $deleteCategoryField;
+        $this->moveCategoryField = $moveCategoryField;
+        $this->updateCategoryField = $updateCategoryField;
+    //
+    //        // Category Attribute
+        $this->categoryAttributeField = $categoryAttributeField;
+        $this->categoryAttributesField = $categoryAttributesField;
+    //
+    //        // Modules
+        $this->modulesField = $modulesField;
 
         // Product Attribute
-        $this->addProductAttributeField = 'addProductAttributeField';
-        $this->deleteProductAttributeField = 'deleteProductAttributeField';
-        $this->productAttributeField = 'productAttributeField';
-        $this->productAttributesField = 'productAttributesField';
+        $this->addProductAttributeField = $addProductAttributeField;
+        $this->deleteProductAttributeField = $deleteProductAttributeField;
+        $this->productAttributeField = $productAttributeField;
+        $this->productAttributesField = $productAttributesField;
 
         // Product
-        $this->addProductField = 'addProductField';
-        $this->deleteProductField = 'deleteProductField';
-        $this->productField = 'productField';
-        $this->productsField = 'productsField';
-        $this->updateProductField = 'updateProductField';
+        $this->addProductField = $addProductField;
+        $this->deleteProductField = $deleteProductField;
+        $this->productField = $productField;
+        $this->productsField = $productsField;
+        $this->updateProductField = $updateProductField;
 
-        parent::__construct($config);
+        parent::__construct([]);
     }
 
     public function build(SchemaConfig $config)
@@ -142,6 +107,8 @@ class MagentoSchema extends AbstractSchema
             ->addField($this->modulesField, 'string')
             ->addField($this->productAttributesField, 'string')
             ->addField($this->productAttributeField, 'string')
+            ->addField($this->productsField, 'string')
+
             ->addField(
                 'product' ,
                 [
@@ -154,8 +121,7 @@ class MagentoSchema extends AbstractSchema
                         $productType = $info->getReturnType();
                         return $productType->getOne(empty($args['id']) ? 1 : $args['id']);
                     }
-                ])
-            ->addField($this->productsField, 'string');
+                ]);
 
         $config->getMutation()
             ->addField($this->addCategoryField, 'string')
