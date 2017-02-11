@@ -32,7 +32,7 @@
         "registration.php"
       ],
       "psr-4": {
-        "graphan\\Magento2GraphQL\\": "src/"
+        "graphan\\Magento2GraphQL\\": "src"
       }
     }
 }
