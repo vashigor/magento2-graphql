@@ -37,8 +37,10 @@ class FrontController implements FrontControllerInterface
     {
         /** @var HttpRequest $req */
         $req = $request;
-        try {
-            $query = $this->getQuery($req);
+        try { 
+            //$query = $this->getQuery($req);
+            $query = $req->getContent();
+
             $parsedQuery = $this->endpoint->parseQuery($query);
 
             return $this->getJsonResult($query, $parsedQuery);
