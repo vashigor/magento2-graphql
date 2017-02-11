@@ -1,10 +1,6 @@
 <?php
-
 namespace graphan\Magento2GraphQL\Model\Search;
-
-
-use graphan\Magento2GraphQL\Model\Api\SearchCriteriaHelperInterface;
-
+use graphan\Magento2GraphQL\Api\SearchCriteriaHelperInterface;
 /**
  * @codeCoverageIgnore
  */
