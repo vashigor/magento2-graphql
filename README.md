@@ -14,6 +14,11 @@ Install this magento2 module using composer:
 composer require we-like-graphql/magento2-graphql
 ```
 
+```
+bin/magento module:enable graphan_Magento2GraphQL
+bin/magento setup:upgrade
+```
+
 It exposes GraphQL Endpoint at:
 ```
 http://<your_magento2_path>/index.php/graphql
