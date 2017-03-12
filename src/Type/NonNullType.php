@@ -6,6 +6,9 @@ use Youshido\GraphQL\Type\AbstractType;
 use Youshido\GraphQL\Type\CompositeTypeInterface;
 use Youshido\GraphQL\Config\Traits\ConfigAwareTrait;
 use Youshido\GraphQL\Validator\Exception\ConfigurationException;
+use Youshido\GraphQL\Type\TypeService;
+use Youshido\GraphQL\Type\TypeFactory;
+use Youshido\GraphQL\Type\TypeMap;
 
 /**
  * @codeCoverageIgnore
