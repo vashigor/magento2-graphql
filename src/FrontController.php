@@ -38,8 +38,11 @@ class FrontController implements FrontControllerInterface
         /** @var HttpRequest $req */
         $req = $request;
         try { 
-            //$query = $this->getQuery($req);
             $query = $req->getContent();
+            if (!$query) {
+                $query = $this->getQuery($req);
+            }
+
 
             $parsedQuery = $this->endpoint->parseQuery($query);
 
@@ -51,6 +54,9 @@ class FrontController implements FrontControllerInterface
 
     private function getQuery(HttpRequest $req)
     {
+        if (!$req->getContent()) {
+            return $req->getParam('query');
+        }
         return $this->decodeJson($req)['query'];
     }
 
