@@ -59,7 +59,7 @@ class SearchField extends AbstractMagentoField
             foreach($args['filters'] as $filterGroup) {
                 $inputParams['filterGroups'][$id]['filters'] = [];
                 foreach($filterGroup as $filter) {
-                    $inputParams['filterGroups'][$id]['filters'][] = $filter;
+                    $inputParams['filterGroups'][$id]['filters'][] = $filter->getValue();
                 }
                 $id++;
             }
