@@ -38,12 +38,7 @@ class FrontController implements FrontControllerInterface
         /** @var HttpRequest $req */
         $req = $request;
         try { 
-            $query = $req->getContent();
-            if (!$query) {
-                $query = $this->getQuery($req);
-            }
-
-
+            $query = $this->getQuery($req);
             $parsedQuery = $this->endpoint->parseQuery($query);
 
             return $this->getJsonResult($query, $parsedQuery);
@@ -57,7 +52,7 @@ class FrontController implements FrontControllerInterface
         if (!$req->getContent()) {
             return $req->getParam('query');
         }
-        return $this->decodeJson($req)['query'];
+        return $this->decodeJson($req);
     }
 
     private function decodeJson(HttpRequest $req)
@@ -72,11 +67,11 @@ class FrontController implements FrontControllerInterface
         $result->setHttpResponseCode(200);
         $result->setHeader('Content-Type', 'application/json', true);
 
-        if(strpos($query, 'IntrospectionQuery') !== false || !isset($parsedQuery['data'])) {
+        if(strpos(is_array($query) ? $query['query'] : $query, 'IntrospectionQuery') !== false || !isset($parsedQuery['data'])) {
             $result->setData($parsedQuery);
         }
         else {
-            $result->setData($parsedQuery['data']);
+            $result->setData(is_array($query) ? $parsedQuery : $parsedQuery['data']);
         }
 
         return $result;

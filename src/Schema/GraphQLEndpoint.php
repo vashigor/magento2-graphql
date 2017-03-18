@@ -27,7 +27,11 @@ class GraphQLEndpoint implements GraphQLEndpointInterface
 
         try {
             $processor = new Processor($this->schema);
-            $processor->processPayload($query);
+            if (is_string($query)) {
+                $processor->processPayload($query);
+            } elseif (is_array($query)) {
+                $processor->processPayload($query['query'], $query['variables']);
+            }
             $result = $processor->getResponseData();
         } catch (\Exception $exception) {
             $result = [
